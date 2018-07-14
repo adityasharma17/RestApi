@@ -29,7 +29,8 @@
         <activity android:name=".LoginSuccessActivity" />
         <activity android:name=".Servers.ListSrervers.ListServerAcitivity" />
         <activity android:name=".Images.GetImagesActivity" />
-        <activity android:name=".Servers.ListSrervers.DetailsServerActivity"></activity>
+        <activity android:name=".Servers.ListSrervers.DetailsServerActivity" />
+        <activity android:name=".Servers.CreateServers.CreateServerActivity"></activity>
     </application>
 
 </manifest>

@@ -1,10 +1,10 @@
 
-package com.example.server.restapi.Servers.DetailedInfo;
+package com.example.server.restapi.ListKeys;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SecurityGroup {
+public class Keypair_ {
 
     @SerializedName("name")
     @Expose

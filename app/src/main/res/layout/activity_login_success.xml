@@ -34,4 +34,13 @@
         android:layout_alignTop="@+id/getServersBtn"
         android:layout_marginEnd="98dp"
         android:text="GETIMAGES" />
+
+    <Button
+        android:id="@+id/btnCreateServer"
+        android:layout_width="145dp"
+        android:layout_height="63dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="101dp"
+        android:text="Create Server" />
 </RelativeLayout>

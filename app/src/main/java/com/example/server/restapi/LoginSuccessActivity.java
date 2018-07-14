@@ -9,13 +9,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.server.restapi.Images.GetImagesActivity;
+import com.example.server.restapi.Servers.CreateServers.CreateServerActivity;
 import com.example.server.restapi.Servers.ListSrervers.ListServerAcitivity;
 import com.example.server.restapi.api.model.TokenVerification.MyToken;
 
 public class LoginSuccessActivity extends AppCompatActivity {
 
     TextView textView10;
-    Button getServersbtn,getImagesBtn;
+    Button getServersbtn,getImagesBtn,createServerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,17 @@ textView10 = findViewById(R.id.textView10);
      textView10.setText(userToken);
      getServersbtn = findViewById(R.id.getServersBtn);
      getImagesBtn = findViewById(R.id.getImagesBtn);
+     createServerBtn = findViewById(R.id.btnCreateServer);
+
+
+     createServerBtn.setOnClickListener(new OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             Intent intent = new Intent(LoginSuccessActivity.this , CreateServerActivity.class);
+             startActivity(intent);
+
+         }
+     });
 
      getServersbtn.setOnClickListener(new OnClickListener() {
          @Override
