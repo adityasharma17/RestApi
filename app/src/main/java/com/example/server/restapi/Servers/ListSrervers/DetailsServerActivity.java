@@ -1,10 +1,9 @@
 package com.example.server.restapi.Servers.ListSrervers;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.GestureDetector;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -19,8 +18,6 @@ import com.example.server.restapi.Servers.serverAction.ServerStop;
 import com.example.server.restapi.api.model.TokenVerification.MyToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.koushikdutta.ion.Ion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,8 +34,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import com.zou.sshclient.*;
 
 public class DetailsServerActivity extends AppCompatActivity {
+
+
+    // This activity is used to capture the data of running compute instances and have action control like start, stop, pause and access
+    // Access of instances is not implemented yet while other 3 options are working.
     TextView tokenDebugView;
     ImageView imageViewState;
     View view1;
@@ -103,6 +105,13 @@ public class DetailsServerActivity extends AppCompatActivity {
         tv15 = findViewById(R.id.tv15);
         tv16 = findViewById(R.id.tv16);
         tv17 = findViewById(R.id.tv17);
+        btnAccess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                accessServer();
+            }
+        });
+
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,6 +143,23 @@ public class DetailsServerActivity extends AppCompatActivity {
     }
 
 
+
+
+    public void accessServer()
+    {
+
+     Intent intent = new Intent(DetailsServerActivity.this, MainActivity.class);
+     intent.putExtra("floatIp", serverFloatingIP);
+     intent.putExtra("username", "cirros");
+     intent.putExtra("password", "cubswin:)");
+     startActivity(intent);
+
+
+
+
+
+    }
+
     public void getSerDetails()
     {
        // progressBar.setVisibility(View.GONE);
@@ -142,20 +168,20 @@ public class DetailsServerActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestDetails request = retrofit.create(RequestDetails.class);
-        Call<DetailedServerDetails> call = request.getDetailsServer("76b6432f3ea649e3acdd9fd91643ef05", adminToken, serverid );
+        Call<DetailedServerDetails> call = request.getDetailsServer("ed5c602595c0441da782f798bc7c3da5", adminToken, serverid );
         call.enqueue(new Callback<DetailedServerDetails>() {
             @Override
             public void onResponse(Call<DetailedServerDetails> call, Response<DetailedServerDetails> response) {
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                final String abc = gson.toJson(response);
-                tokenDebugView.setText(abc);
+               // final String abc = gson.toJson(response);
+                tokenDebugView.setText(gson.toJson(response));
                 JSONObject json = null;
                 JSONObject json1 = null;
                 try{ json = new JSONObject(gson.toJson(response));
                      json = json.getJSONObject("body");
                      json = json.getJSONObject("server");
                      serverStatus =   json.get("status").toString();
-                    //Toast.makeText(DetailsServerActivity.this, serverStatus, Toast.LENGTH_LONG).show();
+                    Toast.makeText(DetailsServerActivity.this, serverStatus, Toast.LENGTH_LONG).show();
                     serverUpdata = json.get("updated").toString();
                     serverHostid = json.get("hostId").toString();
                     serverUserid = json.get("user_id").toString();
@@ -167,7 +193,7 @@ public class DetailsServerActivity extends AppCompatActivity {
                     serverId = json.get("id").toString();
                     serverlastLaunched = json.get("OS-SRV-USG:launched_at").toString();
                     json1 = json.getJSONObject("addresses");
-                    JSONArray jsonArray = json1.getJSONArray("private_network");
+                    JSONArray jsonArray = json1.getJSONArray("private");
                     for(int i=0;i<jsonArray.length();i++)
                     {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -259,7 +285,7 @@ public class DetailsServerActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ServerStart action = retrofit.create(ServerStart.class);
-        Call<ResponseBody> call = action.startServer(body,"76b6432f3ea649e3acdd9fd91643ef05", adminToken, serverId );
+        Call<ResponseBody> call = action.startServer(body,"ed5c602595c0441da782f798bc7c3da5", adminToken, serverId );
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -314,7 +340,7 @@ public class DetailsServerActivity extends AppCompatActivity {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             ServerStop action = retrofit.create(ServerStop.class);
-            Call<ResponseBody> call = action.stopServer(body, "76b6432f3ea649e3acdd9fd91643ef05", adminToken, serverId);
+            Call<ResponseBody> call = action.stopServer(body, "ed5c602595c0441da782f798bc7c3da5", adminToken, serverId);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -371,7 +397,7 @@ public class DetailsServerActivity extends AppCompatActivity {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             ServerPause action = retrofit.create(ServerPause.class);
-            Call<ResponseBody> call = action.pauseServer(body, "76b6432f3ea649e3acdd9fd91643ef05", adminToken, serverId);
+            Call<ResponseBody> call = action.pauseServer(body, "ed5c602595c0441da782f798bc7c3da5", adminToken, serverId);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

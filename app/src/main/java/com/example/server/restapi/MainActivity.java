@@ -1,8 +1,14 @@
 package com.example.server.restapi;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,11 +39,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 public  String token;
-TextView textView;
+//TextView textView,debugTextView;
 String text;
+ImageView imageView;
 public String globalToken;
 
-
+// login token acquisition from the server and further used for communicating with openstack server
 
 
 
@@ -56,8 +63,13 @@ public String globalToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_main);
-        textView= findViewById(R.id.textView);
+        imageView = findViewById(R.id.imageView2);
+       // imageView.setImageResource(R.drawable.splash);
+        //textView= findViewById(R.id.textView);
+        //debugTextView = findViewById(R.id.debugTextView);
 
 
 
@@ -85,11 +97,11 @@ public String globalToken;
         List<String> methods = new ArrayList<String>();
         methods.add("password");
         Project project = new Project();
-        project.setId("76b6432f3ea649e3acdd9fd91643ef05");
+        project.setId("ed5c602595c0441da782f798bc7c3da5");
         Scope scope = new Scope();
         scope.setProject(project);
         User user = new User();
-        user.setId("bbe57ffd805346f88930466fcf7cbe0d");
+        user.setId("e3a3e53a7a224014a430a6312f62a6c9");
         user.setPassword("6790");
         Password password = new Password();
         password.setUser(user);
@@ -153,7 +165,21 @@ public String globalToken;
            @Override
            public void onFailure(Call<ResponseBody> call, Throwable t) {
 
-               Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
+               Toast.makeText(MainActivity.this, "Cant Connect to Server", Toast.LENGTH_SHORT).show();
+               //debugTextView.setText(t.getMessage());
+               AlertDialog alertDialog = new AlertDialog.Builder(
+                       MainActivity.this).create();
+               alertDialog.setTitle("Error");
+               alertDialog.setIcon(R.drawable.if_circle_red_10282);
+               alertDialog.setButton(Dialog.BUTTON_POSITIVE,"Retry", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int which) {
+                       // Write your code here to execute after dialog closed
+                       Toast.makeText(getApplicationContext(), "Retrying", Toast.LENGTH_SHORT).show();
+                       finish();
+                       startActivity(getIntent());
+                   }
+               });
+               alertDialog.show();
 
            }
        });

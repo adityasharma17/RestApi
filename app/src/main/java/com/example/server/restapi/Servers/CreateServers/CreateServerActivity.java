@@ -3,6 +3,7 @@ package com.example.server.restapi.Servers.CreateServers;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -33,17 +34,25 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CreateServerActivity extends AppCompatActivity {
+
+
+
+    // This activity is designed to create compute instances right from the mobile application. The mobile application will get the preferences from user and will
+    // create a compute instances
       TextView textView11,textView12,textView13,textView14,textView15;
      Spinner imagesSpinner, networkSpinner, keysSpinner, flavorSpinner, securityGroupsSpinner;
      HashMap<String, String> images;
      ArrayList<String> imagesName;
      ArrayList<String> keys;
+    // ArrayList<>
      String imageName;
      String keyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_create_server);
          imagesSpinner = findViewById(R.id.imagesSpinner);
          networkSpinner = findViewById(R.id.networkSpinner);

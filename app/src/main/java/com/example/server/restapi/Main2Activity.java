@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -42,12 +43,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Main2Activity extends AppCompatActivity {
 
-
+// currently No database is used. The credential of user is stored on a file created in isolated space of the mobile application.
+    //Contents from the file is used for login process.
+    //This is the register user activity.
 
     ArrayList<String> userList = new ArrayList<String>();
 
 
-    TextView textView2,textView3;
+   // TextView textView2,textView3;
     String loginToken;
     Button loginBtn, createBtn;
 EditText editUserName, editPassword, editProjectName;
@@ -58,6 +61,8 @@ EditText editUserName, editPassword, editProjectName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         userList.add("Aditya121");
 
 
@@ -66,7 +71,7 @@ EditText editUserName, editPassword, editProjectName;
         setContentView(R.layout.activity_main2);
 
 
-        textView2 = findViewById(R.id.textView2);
+       // textView2 = findViewById(R.id.textView2);
         loginBtn = findViewById(R.id.loginBtn);
         createBtn = findViewById(R.id.createBtn);
         editUserName = findViewById(R.id.editUsername);
@@ -75,8 +80,8 @@ EditText editUserName, editPassword, editProjectName;
        // loginToken = getIntent().getStringExtra("tok");
         //textView2.setText(loginToken);
         //getImages(loginToken);
-        textView3 = findViewById(R.id.textView3);
-      textView2.setText(MyToken.loginToken);
+       // textView3 = findViewById(R.id.textView3);
+     // textView2.setText(MyToken.loginToken);
       loginToken = MyToken.loginToken;
 
       createBtn.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +91,8 @@ EditText editUserName, editPassword, editProjectName;
               if(!userList.contains(editUserName.getText().toString()))
               {userList.add(editUserName.getText().toString());
                   createProject(loginToken);
+
+
 
               }
               else{
@@ -236,7 +243,7 @@ EditText editUserName, editPassword, editProjectName;
 
             Retrofit roles = builder.build();
             AssignRolesToUser assignRolesToUser = roles.create(AssignRolesToUser.class);
-            Call<ResponseBody> getRolesResponse = assignRolesToUser.assignRoles(projectID, myUserId, "863778c538e747a6b583644a88a04c9d", token);
+            Call<ResponseBody> getRolesResponse = assignRolesToUser.assignRoles(projectID, myUserId, "020edc58a02048e8b36d76d792ad9c39", token);
 
 
             getRolesResponse.enqueue(new Callback<ResponseBody>() {
@@ -244,7 +251,7 @@ EditText editUserName, editPassword, editProjectName;
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                     String raw = response.raw().toString();
-                    textView3.setText(raw);
+                   // textView3.setText(raw);
                     Toast.makeText(Main2Activity.this, "User Created", Toast.LENGTH_SHORT).show();
 
 

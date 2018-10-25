@@ -15,6 +15,8 @@ public interface CreateProject {
     @POST("/v3/projects")
     Call<GetDataProject> makeProject(@Header("X-Auth-Token") String key, @Body PostDataProject postObject);
 
+    // while the user registers for an account on cloud service a project domain need to be established such that that user can work on different projects right from the mobile application.
+
 
 
 }

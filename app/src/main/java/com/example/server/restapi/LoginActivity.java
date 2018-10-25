@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     EditText edittextUserName, editTextPassword;
-    TextView textView6, textView7, textView8, textView9;
+   // TextView textView6, textView7, textView8, textView9;
     Button btnLogin;
     String usertoken;
 
@@ -47,14 +48,16 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_login);
 
    edittextUserName = findViewById(R.id.editTextUserName);
    editTextPassword = findViewById(R.id.editTextPassword);
-   textView6 = findViewById(R.id.textView6);
-   textView7 = findViewById(R.id.textView7);
-   textView8 = findViewById(R.id.textView8);
-   textView9 = findViewById(R.id.textView9);
+  // textView6 = findViewById(R.id.textView6);
+  // textView7 = findViewById(R.id.textView7);
+  // textView8 = findViewById(R.id.textView8);
+  // textView9 = findViewById(R.id.textView9);
    btnLogin = findViewById(R.id.btnLogin);
 
 
@@ -67,9 +70,9 @@ public class LoginActivity extends AppCompatActivity {
            password = editTextPassword.getText().toString();
            projectId = getProjectId(username);
            userId = getUserIdbyname(username);
-           textView6.setText(userId);
-           textView7.setText(projectId);
-
+           //textView6.setText(userId);
+         //  textView7.setText(projectId);
+//
 
            loginUser(userId ,password,projectId);
 
@@ -189,7 +192,7 @@ public class LoginActivity extends AppCompatActivity {
         example.setAuth(auth);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
          final String abc = gson.toJson(example);
-           textView8.setText(abc);
+           //textView8.setText(abc);
         //Example example = new Gson().fromJson(text, Example.class);
 
 
@@ -224,7 +227,7 @@ public class LoginActivity extends AppCompatActivity {
                      loginSuccess(usertoken);
                  }
                  //textView8.setText(usertoken);
-                 textView9.setText(responsebody);
+                 //textView9.setText(responsebody);
 
 
 

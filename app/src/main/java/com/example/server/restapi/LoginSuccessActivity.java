@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.server.restapi.Images.GetImagesActivity;
@@ -15,21 +17,25 @@ import com.example.server.restapi.api.model.TokenVerification.MyToken;
 
 public class LoginSuccessActivity extends AppCompatActivity {
 
-    TextView textView10;
+    TextView textView2;
     Button getServersbtn,getImagesBtn,createServerBtn;
+    ImageView imageview4;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_login_success);
-textView10 = findViewById(R.id.textView10);
+textView2 = findViewById(R.id.textView2);
         Bundle extras = getIntent().getExtras();
         String userToken = extras.getString("token");
         MyToken.userToken= userToken;
-     textView10.setText(userToken);
+     //textView10.setText(userToken);
      getServersbtn = findViewById(R.id.getServersBtn);
      getImagesBtn = findViewById(R.id.getImagesBtn);
      createServerBtn = findViewById(R.id.btnCreateServer);
+     imageview4 = findViewById(R.id.imageView4);
 
 
      createServerBtn.setOnClickListener(new OnClickListener() {

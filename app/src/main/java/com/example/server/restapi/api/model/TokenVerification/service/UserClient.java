@@ -14,7 +14,7 @@ public interface UserClient {
 
 
 
-
+// api model for authentication
 
     @Headers("Content-Type: application/json")
     @POST("tokens")

@@ -114,7 +114,7 @@
     <TextView
         android:id="@+id/tokenDebugView"
         android:layout_width="395dp"
-        android:layout_height="40dp"
+        android:layout_height="36dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text="TextView"

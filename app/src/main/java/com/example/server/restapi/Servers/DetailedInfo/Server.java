@@ -7,9 +7,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class Server {
 
+    @SerializedName("OS-EXT-STS:task_state")
+    @Expose
+    private Object oSEXTSTSTaskState;
     @SerializedName("addresses")
     @Expose
     private Addresses addresses;
+    @SerializedName("links")
+    @Expose
+    private List<Link> links = null;
     @SerializedName("image")
     @Expose
     private Image image;
@@ -34,12 +40,24 @@ public class Server {
     @SerializedName("user_id")
     @Expose
     private String userId;
+    @SerializedName("OS-DCF:diskConfig")
+    @Expose
+    private String oSDCFDiskConfig;
+    @SerializedName("accessIPv4")
+    @Expose
+    private String accessIPv4;
+    @SerializedName("accessIPv6")
+    @Expose
+    private String accessIPv6;
     @SerializedName("OS-EXT-STS:power_state")
     @Expose
     private Integer oSEXTSTSPowerState;
     @SerializedName("OS-EXT-AZ:availability_zone")
     @Expose
     private String oSEXTAZAvailabilityZone;
+    @SerializedName("config_drive")
+    @Expose
+    private String configDrive;
     @SerializedName("status")
     @Expose
     private String status;
@@ -49,9 +67,18 @@ public class Server {
     @SerializedName("hostId")
     @Expose
     private String hostId;
+    @SerializedName("OS-EXT-SRV-ATTR:host")
+    @Expose
+    private String oSEXTSRVATTRHost;
+    @SerializedName("OS-SRV-USG:terminated_at")
+    @Expose
+    private Object oSSRVUSGTerminatedAt;
     @SerializedName("key_name")
     @Expose
     private String keyName;
+    @SerializedName("OS-EXT-SRV-ATTR:hypervisor_hostname")
+    @Expose
+    private String oSEXTSRVATTRHypervisorHostname;
     @SerializedName("name")
     @Expose
     private String name;
@@ -61,6 +88,20 @@ public class Server {
     @SerializedName("tenant_id")
     @Expose
     private String tenantId;
+    @SerializedName("os-extended-volumes:volumes_attached")
+    @Expose
+    private List<Object> osExtendedVolumesVolumesAttached = null;
+    @SerializedName("metadata")
+    @Expose
+    private Metadata metadata;
+
+    public Object getOSEXTSTSTaskState() {
+        return oSEXTSTSTaskState;
+    }
+
+    public void setOSEXTSTSTaskState(Object oSEXTSTSTaskState) {
+        this.oSEXTSTSTaskState = oSEXTSTSTaskState;
+    }
 
     public Addresses getAddresses() {
         return addresses;
@@ -68,6 +109,14 @@ public class Server {
 
     public void setAddresses(Addresses addresses) {
         this.addresses = addresses;
+    }
+
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<Link> links) {
+        this.links = links;
     }
 
     public Image getImage() {
@@ -134,6 +183,30 @@ public class Server {
         this.userId = userId;
     }
 
+    public String getOSDCFDiskConfig() {
+        return oSDCFDiskConfig;
+    }
+
+    public void setOSDCFDiskConfig(String oSDCFDiskConfig) {
+        this.oSDCFDiskConfig = oSDCFDiskConfig;
+    }
+
+    public String getAccessIPv4() {
+        return accessIPv4;
+    }
+
+    public void setAccessIPv4(String accessIPv4) {
+        this.accessIPv4 = accessIPv4;
+    }
+
+    public String getAccessIPv6() {
+        return accessIPv6;
+    }
+
+    public void setAccessIPv6(String accessIPv6) {
+        this.accessIPv6 = accessIPv6;
+    }
+
     public Integer getOSEXTSTSPowerState() {
         return oSEXTSTSPowerState;
     }
@@ -148,6 +221,14 @@ public class Server {
 
     public void setOSEXTAZAvailabilityZone(String oSEXTAZAvailabilityZone) {
         this.oSEXTAZAvailabilityZone = oSEXTAZAvailabilityZone;
+    }
+
+    public String getConfigDrive() {
+        return configDrive;
+    }
+
+    public void setConfigDrive(String configDrive) {
+        this.configDrive = configDrive;
     }
 
     public String getStatus() {
@@ -174,12 +255,36 @@ public class Server {
         this.hostId = hostId;
     }
 
+    public String getOSEXTSRVATTRHost() {
+        return oSEXTSRVATTRHost;
+    }
+
+    public void setOSEXTSRVATTRHost(String oSEXTSRVATTRHost) {
+        this.oSEXTSRVATTRHost = oSEXTSRVATTRHost;
+    }
+
+    public Object getOSSRVUSGTerminatedAt() {
+        return oSSRVUSGTerminatedAt;
+    }
+
+    public void setOSSRVUSGTerminatedAt(Object oSSRVUSGTerminatedAt) {
+        this.oSSRVUSGTerminatedAt = oSSRVUSGTerminatedAt;
+    }
+
     public String getKeyName() {
         return keyName;
     }
 
     public void setKeyName(String keyName) {
         this.keyName = keyName;
+    }
+
+    public String getOSEXTSRVATTRHypervisorHostname() {
+        return oSEXTSRVATTRHypervisorHostname;
+    }
+
+    public void setOSEXTSRVATTRHypervisorHostname(String oSEXTSRVATTRHypervisorHostname) {
+        this.oSEXTSRVATTRHypervisorHostname = oSEXTSRVATTRHypervisorHostname;
     }
 
     public String getName() {
@@ -204,6 +309,22 @@ public class Server {
 
     public void setTenantId(String tenantId) {
         this.tenantId = tenantId;
+    }
+
+    public List<Object> getOsExtendedVolumesVolumesAttached() {
+        return osExtendedVolumesVolumesAttached;
+    }
+
+    public void setOsExtendedVolumesVolumesAttached(List<Object> osExtendedVolumesVolumesAttached) {
+        this.osExtendedVolumesVolumesAttached = osExtendedVolumesVolumesAttached;
+    }
+
+    public Metadata getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Metadata metadata) {
+        this.metadata = metadata;
     }
 
 }

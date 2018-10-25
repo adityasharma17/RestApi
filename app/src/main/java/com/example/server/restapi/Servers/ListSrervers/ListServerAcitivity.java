@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.example.server.restapi.R;
@@ -29,6 +30,8 @@ public class ListServerAcitivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_list_server_acitivity);
 
         gToken = MyToken.loginToken;
@@ -53,7 +56,7 @@ public class ListServerAcitivity extends AppCompatActivity {
                .addConverterFactory(GsonConverterFactory.create())
            .build();
        RequestInterface request = retrofit.create(RequestInterface.class);
-       Call<GetServerDetails> call = request.getServerData("76b6432f3ea649e3acdd9fd91643ef05", gToken );
+       Call<GetServerDetails> call = request.getServerData("ed5c602595c0441da782f798bc7c3da5", gToken );
 
        call.enqueue(new Callback<GetServerDetails>() {
            @Override

@@ -7,16 +7,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class Addresses {
 
-    @SerializedName("private_network")
+    @SerializedName("private")
     @Expose
-    private List<PrivateNetwork> privateNetwork = null;
+    private List<Private> _private = null;
 
-    public List<PrivateNetwork> getPrivateNetwork() {
-        return privateNetwork;
+    public List<Private> getPrivate() {
+        return _private;
     }
 
-    public void setPrivateNetwork(List<PrivateNetwork> privateNetwork) {
-        this.privateNetwork = privateNetwork;
+    public void setPrivate(List<Private> _private) {
+        this._private = _private;
     }
 
 }

@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class DetailedServerDetails {
-
+ //  These are POJO classes that we are using to store server data received from openstack server.
     @SerializedName("server")
     @Expose
     private Server server;

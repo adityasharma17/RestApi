@@ -2,7 +2,6 @@ package com.example.server.restapi.Servers.ListSrervers;
 
 import com.example.server.restapi.Servers.DetailedInfo.DetailedServerDetails;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;

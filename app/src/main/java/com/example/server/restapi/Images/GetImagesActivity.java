@@ -53,7 +53,8 @@ public class GetImagesActivity extends AppCompatActivity {
 
 
 
-
+//This activity is used to fetch the images that can be used to deploy a compute machine
+    // All the other interfaces are plane simple java objects that is used for storing the data that we recieved from the server.
 
 
 
